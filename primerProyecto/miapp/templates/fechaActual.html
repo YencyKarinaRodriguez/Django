@@ -1,0 +1,18 @@
+<br><p><strong>Años desde el 2024 hasta 2050</strong></p>
+
+        {% comment 'Numeros Divisibles' %} Se cera un bucle el cual cumplira una funcion para poder ejecutarse, divisibleby es un filtro que nos permite encontrar los numeros pares. {% endcomment %}
+
+        <ul>
+            {% for year in years%}
+                {% if year|divisibleby:2 != 0 %}
+                    <li>{{year}}</li>
+                {% endif %}
+            {% endfor %}
+        </ul>
+
+<h2>Bienvenido {{name}}</h2><br>
+
+<h1> Estamos en el 2024 </h1><br>
+
+<p>{{saludo}}</p>
+la vista se llama fecha_actual

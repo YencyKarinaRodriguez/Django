@@ -1,0 +1,19 @@
+{% extends 'layout.html' %}
+
+{%block title%}
+    {{titulo}}
+{%endblock%}
+
+{%block content%}
+<h1>Inicio</h1>
+<h1 class="title">{{title}}</h1>
+{{mi_variable}}
+{%if name == 'Yency'%}
+    <p>{{name}}</p>
+{%else%}
+    <strong>Nombre no existe</strong>
+{%endif%}
+
+<p>Años desde el 2024 hasta 2050</p>
+<ul>
+{%endblock%}

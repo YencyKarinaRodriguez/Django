@@ -1,0 +1,64 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css'%}"/>
+
+    <title>
+        {% block title %}{% endblock %}
+    </title>
+</head>
+<body>
+    <!-- cabezera de la pagina-->
+    <header>
+        <div class="logotipo">
+            <!--Logo tipo Django-->
+            <img src="{% static 'img/logo.png'%}" alt="">
+            <h1>Sitio web con Django | Yency Quiñonez</h1>
+        </div>
+    </header>
+    </hr>
+    <nav>
+        <ul>
+            <li>
+                <a href="/hola_mundo">Hola Mundo</a>
+            </li>
+            <li>
+                <a href="/saludo">Saludo</a>
+            </li>
+            <li>
+                <a href="/presentacion">Presentacion</a>
+            </li>
+            <li>
+                <a href="/">Inicio</a>
+            </li>
+            <li>
+                <a href="/contacto">Contacto</a>
+            </li>
+            <li>
+                <a href="/quienesSomos">Quienes Somos</a>
+            </li>
+            <li>
+                <a href="/productoServicios">Productos y Servicios</a>
+            </li>
+            <li>
+                <a href="/pagina">Pagina</a>
+            </li>
+        </ul>
+    </nav>
+    </hr>
+    <div class="barra">
+        <span class="esquina-izquierda"></span>
+        <span class="relleno-barra"></span>
+        <span class="esquina-derecha"></span>
+    </div>
+    <div id="content">
+        {% block content %}
+        <strong>Contenido del Bloque Original</strong>
+        {% endblock %}
+    </div>
+    <footer>Master del Framework Django &copy; Yency Quiñonez ({% now 'd/m/y h:i:s' %})</footer>
+</body>
+</html>

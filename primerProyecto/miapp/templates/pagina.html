@@ -1,0 +1,54 @@
+{%extends 'layout.html' %}
+{%load static%}
+{%load filters%}
+{% block title %}
+
+Mi Pagina Web
+{% endblock %}
+
+{% block content %}
+    <h1 class="title">Mi pagina Web</h1>
+    <p>{{"Creado por Yency Quiñonez" |cut:''}}</p>
+    {{texto|default:"No hay nada"}}
+
+    <p>
+        {{lista|first}}
+        {{lista|last}}
+    </p>
+
+    <p>
+        {{lista|join:", "}}
+    </p>
+
+    <p>
+        {{lista|length}}
+    </p>
+
+    <p>
+        {{'texto de prueba'|length}}
+    
+    </p>
+
+    <p>
+        {{'texto de prueba'|upper}}
+    </p>
+
+    <p>
+        {{'texto de prueba'|lower}}
+    </p>
+
+    <p>
+        {{lista|random}}
+    </p>
+
+    <p>
+        {{'<h1>Texto</h1> <strong>Pruebas</strong>'|striptags}}
+    </p>
+
+    <p>
+        {{'<h1>Texto</h1> <strong>Pruebas</strong>'|striptags|wordcount}}
+    </p>
+
+    {{"Yency Quiñonez"|saludo|safe}}
+
+{%endblock%}

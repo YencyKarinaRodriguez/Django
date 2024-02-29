@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponse, redirect
+from miapp.models import Article
 
 # Create your views here.
 
@@ -78,8 +79,40 @@ def productoServicios (request):
 
     return render (request, 'productoServicio.html')
 
-#t
+#tarea
 def pagina(request,redirigir = 0):
     if redirigir == 1:
         return redirect('contacto', nombre ="Ana", apellidos = "Perez")
     return render(request,'pagina.html' , {'texto':'Este es mi texto', 'lista':['uno','dos','tres'],})
+
+#actividad 29 de febrero
+def crear_articulo(request, title, content, public):
+    articulo = Article(
+        title = title,
+        content = content,
+        public = public,
+    )
+    articulo.save()
+    return HttpResponse(f"Articulo creado: {articulo.title} - {articulo.content}")
+def articulo (request):
+    try:
+        articulo = Article.objects.get(pk=7, public= False)
+        response = f"Articulo consultado: {articulo.title} - {articulo.content} - Estado: {articulo.public}"
+    except:
+        response = "<strong>Articulo no encontrado<strong>"
+
+    return HttpResponse(response)
+def editar_articulo(request):
+    articulo = Article.objects.get(pk=7)
+    articulo.title = "los 12 cuentos peregrinos"
+    articulo.public = True
+    articulo.save()
+    return HttpResponse(f"El articulo {articulo.id} de nombre {articulo.title} ha sido actualizado y su estado es: {articulo.public}")
+
+def articulos(request):
+    articulos = Article.objects.all()
+    return render(request, 'articulos.html',{
+        'articulos':articulos
+    })
+    
+

@@ -21,4 +21,5 @@ urlpatterns = [
     path('articulo/', miapp.views.articulo, name = "Articulo"),
     path('editar_articulo/<int:id>', miapp.views.editar_articulo, name = "editar_articulo"),
     path('articulos/', miapp.views.articulos, name= "Listar"),
+    path('borrarArticulo/<int:id>', miapp.views.borrarArticulo, name = "Borrar"),
 ]

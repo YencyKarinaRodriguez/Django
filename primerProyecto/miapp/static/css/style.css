@@ -140,3 +140,25 @@ footer{
     margin: 0 auto;
     font-size: 20px;
 }
+
+/* 06 de marzo */
+.boton_borrar {
+    text-decoration: none;
+    background-color: #ff0000; /* Cambiar a tu color deseado */
+    color: white;
+    padding: 5px;
+    border: 1px solid #444; 
+    border-radius: 5px;
+}
+
+.boton_borrar:hover {
+    background-color: #cc0000; /* Cambiar a tu color deseado para hover */
+}
+
+.publicado {
+    color:#2ba977
+}
+
+.privado {
+    color: #cc0000;
+}

@@ -1,17 +1,38 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-|   Lista de articulos
-{% endblock %}
+    Lista De articulos
+{% endblock title %}
 
 {% block content %}
-<h2 class="title">Listado de articulos de mi blog</h2>
+<h2 class="title">Listado de Articulos de mi Blog</h2>
+<br>
 <hr/>
+<div class="lista">
 <ul>
     {%for article in articulos%}
     <li>
-        {{article.id}} - {{article.title}} - {{article.content}} - {{article.public}}
-    <li>
+        <strong>Código: </strong>{{article.id }}
+        <br> 
+        <strong>Título: </strong>{{article.title}}  
+        <br>
+        <strong>Contenido: </strong>{{article.content}} 
+        <br>
+        <strong>Estado: </strong>
+        {%if article.public %}
+           <strong class="publicado">Publicado</strong>
+        {%else%}
+           <strong class="privado">Privado</strong>
+        {%endif%}
+        {{article.public}}
+        <p><span>{{article.create_date}}</span></p>
+        
+    </li>
+    <a href="{%url 'Borrar' article.id%}" class="boton_borrar">Borrar</a>
+    <br>
+    <hr/>
     {% endfor %}
-<ul>
+</ul>
+{{ block.super }}
+
 {% endblock %}

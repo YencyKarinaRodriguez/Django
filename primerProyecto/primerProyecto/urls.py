@@ -3,6 +3,7 @@ from django.urls import path
 from miapp import views
 import miapp.views
 
+
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('hola_mundo/', views.hola_mundo, name="Hola Mundo"),
@@ -22,4 +23,8 @@ urlpatterns = [
     path('editar_articulo/<int:id>', miapp.views.editar_articulo, name = "editar_articulo"),
     path('articulos/', miapp.views.articulos, name= "Listar"),
     path('borrarArticulo/<int:id>', miapp.views.borrarArticulo, name = "Borrar"),
+    path('deleteArticulo/<int:id>', miapp.views.deleteArticulo, name = "eliminarSql"),
+    path('updateArticulo/<str:title>/<int:id>', miapp.views.updateArticulo, name = "actualizarSql"),
+    path('createArticulo/', miapp.views.createArticulo, name = "create"),
+
 ]

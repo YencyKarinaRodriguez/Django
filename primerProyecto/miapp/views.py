@@ -1,5 +1,8 @@
 from django.shortcuts import render, HttpResponse, redirect
 from miapp.models import Article
+from django.db import connection
+from django.db.models import Q
+
 
 # Create your views here.
 
@@ -120,5 +123,60 @@ def borrarArticulo(request, id):
     articulo = Article.objects.get(pk=id)
     articulo.delete()
     return redirect('articulos')
-    
 
+def deleteArticulo(request, id):
+
+    Temp = (f"DELETE FROM miapp_Article WHERE id = %s")
+    with connection.cursor () as cursor:
+        cursor.execute(Temp, [id])
+
+        articulos = Article.objects.all()
+    return render(request, 'articulos.html',{
+        'articulos':articulos
+    })
+
+def updateArticulo (request, title, id):
+    Temp = (f"UPDATE miapp_article SET title = %s WHERE id = %s")
+    with connection.cursor() as cursor:
+        cursor.execute(Temp, [title,id])
+        articulos= Article.objects.all()
+    return render(request, 'articulos.html', {
+        'articulos':articulos
+    })
+
+def saveArticulo():
+    articulo = Article(
+        title = title,
+        content = content,
+        public = public,
+    )
+    articulo.save()
+    return HttpResponse(f"Articulo creado: {articulo.title} - {articulo.content}")
+
+def createArticulo(request):
+    return render(request, 'createArticulo.html')
+
+
+
+# def articulos(request):
+#     articulos = Article.objects.order_by('id')
+#     articulos = Article.objects.filter(title = "articulo 4")
+#     articulos = Article.objects.filter(public = "True",id=4)
+#     articulos = Article.objects.filter(title__contains="articulos")
+#     articulos = Article.objects.filter(title__exact="articulos")
+#     articulos = Article.objects.filter(title__iexact="rticulos")
+#     articulos = Article.objects.filter(title__iexact="articulos 4")
+    articulos = Article.objects.filter(id__gt=1)
+    articulos = Article.objects.filter(id__lte=5)
+    articulos = Article.objects.filter(id__in=[1,2,9,10])
+    articulos = Article.objects.filter(
+                                title__contains="L",
+                                public=True 
+                                
+                                    ).exclude(
+                                        
+                                    )
+    articulos = Article.objects.order_by('id')
+    articulos = Article.objects.filter(
+                Q(title_contains="") | Q (public = True)
+)

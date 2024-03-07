@@ -162,3 +162,52 @@ footer{
 .privado {
     color: #cc0000;
 }
+
+.box form {
+    width: 50%;
+}
+
+.box form label
+.box form input {
+    display: block;
+    padding: 5px;
+    padding-left: 5px;
+}
+
+.box form input [type="text"],
+.box form textarea,
+.box form select{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.box form select {
+    margin-bottom: 30px;
+    width: 70px;
+}
+
+.box form input[type="submit"],
+.box form input[type="button"],
+.box form button{
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #2ba977;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px salid #444;
+    border-radius: 5px;
+}
+
+.box form input[type="submit"]:hover
+.box form input[type="button"]:hover
+.box form button: hover{
+    cursor:pointer
+    padding: 10px;
+    margin-top: 20px;
+    background-color: #2ba977;
+    color: white;
+    font-weight: 700;
+    font-size: 15px;
+    border: 1px salid #444;
+    border-radius: 5px;
+}

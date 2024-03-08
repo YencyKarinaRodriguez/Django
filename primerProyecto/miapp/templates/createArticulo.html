@@ -1,25 +1,26 @@
 {% extends 'layout.html' %}
 
 {% block title %}
-    Crear articulos
+    Crear Articulos
 {% endblock title %}
 
 {% block content %}
-<h2 class="title">Formulario de Articulos de mi Blog</h2>
+<h2 class="title">Creación de Artículos de mi Blog</h2>
 <br>
 <hr/>
-<form action="{%url 'create'%}" method="GET">
-    <label for="title"> Titulo de Articulo</label>
-    <input type="text" name="title" placeholder ="Ingrese el Titulo"/>
-    <label for="content">Contenido del Articulo</label>
-    <textarea name="content" rows="6" cols="50"></textarea>
+<form action="{% url 'save'%}" method="POST">
+    {% csrf_token %}
+    <label for="title">Titulo del Articulo</label>
+    <input type="text" name="title" placeholder ="Ingrese el titulo"/>
+    <label for="content">Contenido del Artículo </label>
+    <textarea name="content"></textarea>
     <label for="public">¿Publicado?</label>
     <select name="public">
-        <option value="1">Si</option>
-        <option value="0">No</option>
+        <option value="1">SI</option>
+        <option value="0">NO</option>
     </select>
     <input type="submit" value="Guardar">
-
 </form>
+{% csrf_token %}
 
 {% endblock %}

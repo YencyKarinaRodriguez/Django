@@ -26,5 +26,6 @@ urlpatterns = [
     path('deleteArticulo/<int:id>', miapp.views.deleteArticulo, name = "eliminarSql"),
     path('updateArticulo/<str:title>/<int:id>', miapp.views.updateArticulo, name = "actualizarSql"),
     path('createArticulo/', miapp.views.createArticulo, name = "create"),
+    path('saveArticulo/', miapp.views.saveArticulo, name= "save")
 
 ]

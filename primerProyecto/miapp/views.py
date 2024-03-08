@@ -144,7 +144,17 @@ def updateArticulo (request, title, id):
         'articulos':articulos
     })
 
-def saveArticulo():
+
+#clase 8 de marzo
+def saveArticulo(request):
+    if  request.method == 'POST':
+        title = request.POST ["title"]
+        if len (title)<=5:
+            return HttpResponse("El titulo del articulo debe ser mayor a 5 caracteres")
+        else:
+            content = request.POST['content']
+            public = request.POST['public']
+
     articulo = Article(
         title = title,
         content = content,
@@ -155,6 +165,10 @@ def saveArticulo():
 
 def createArticulo(request):
     return render(request, 'createArticulo.html')
+
+
+
+
 
 
 

@@ -265,3 +265,16 @@ hr {
     background-color: #ccc;
     margin-bottom: 20px;
 }
+
+.rojo{
+    color: red;
+    box-shadow: 0px 0px 4px black;
+}
+.message{
+    padding: 20px;
+    background: #2ba977;
+    color: white;
+    text-align: center;
+    margin-bottom: 10px;
+    font-weight: 600;
+}

@@ -2,9 +2,11 @@ from django.shortcuts import render, HttpResponse, redirect
 from miapp.models import Article
 from django.db import connection
 from django.db.models import Q
-
+from miapp.forms import FormArticulo
+from django.contrib import messages
 
 # Create your views here.
+layout = ""
 
 def hola_mundo (request):
     return render (request,'hola_mundo.html')
@@ -166,6 +168,42 @@ def saveArticulo(request):
 def createArticulo(request):
     return render(request, 'createArticulo.html')
 
+#
+def create_full_articulo(request):
+    if request.method == 'POST':
+        formulario = FormArticulo(request.POST)
+        if formulario.is_valid():
+            data_form = formulario.cleaned_data
+            title = data_form.get('title')
+            content = data_form.get('content')
+            public = data_form.get ('public')
+
+            articulo= Article(
+                title = title,
+                content= content,
+                public = public,
+            )
+            articulos = Article.objects.all().order_by('content')
+
+            articulo.save()
+            #crea un mensaje flash (sesion que solo se muestra una vez)
+            messages.success(request, f'El articulo {articulo.id} se ha guardado satisfactoriamente')
+            #return HttpResponse (title + ' '+ content + ' ' + str(articulo.public))
+            return render(request,'articulos.html',{
+                'titulo':'Guardado el articulo con exito',
+                'icono': 'sucess',
+                'boton': 'aceptar',
+                'articulos' : articulos
+            })
+        else:
+            
+            return render (request,'create_full_articulos.html',{
+                'form':formulario})
+    else:
+        formulario = FormArticulo()
+        return render (request,'create_full_articulos.html',{
+            'form':formulario
+        })
 
 
 

@@ -5,34 +5,74 @@
 {% endblock title %}
 
 {% block content %}
-<h2 class="title">Listado de Articulos de mi Blog</h2>
+    <h2 class="title">Listado de Articulos de mi Blog</h2>
+    
+    {% if messages %}
+        {%for m in messages%}
+            <div class = "message">
+                {{m}}
+            </div>
+                <script>
+                    swall({
+                        title: "{{titulo}}",
+                        text: "{{m}}",
+                        icon: "{{icono}}",
+                        buttons: {cancel: "Cancelar",
+                                confirm: "Aceptar",},
+                    });
+                    .then((willoption)=> {
+                        if (willoption) {
+                            //codigo para ejecutar si se hace clic en el boton aceptar
+                            swal("¡Eliminado correctamente!", {
+                                icon: "success",
+                            });
+                        } else {
+                            //codigo para ejecutar si se hace clic en el boton cancelar
+                            swal("Operacion cancelada", {
+                                icon: "info",
+                            });
+                        }
+                    })
+                </script>
+        {%endfor%}
+    {%endif%}
+
 <br>
 <hr/>
-<div class="lista">
-<ul>
-    {%for article in articulos%}
-    <li>
-        <strong>Código: </strong>{{article.id }}
+<div class="data">
+<article>
+    {%for articulos in articulos%}
+    <article class="article-item">
+        {%if articulos.image != 'null' and articulos.image.url|length >= 1 %}
+            <img src="{{articulos.image.url}}" alt="Aqui va la imagen del articulo">
+        {% endif %}
+        <div class="Listado">
         <br> 
         <strong>Título: </strong>{{article.title}}  
         <br>
+        <span class="date">{{articulos.create_date}}</span>
+        <br>
         <strong>Contenido: </strong>{{article.content}} 
         <br>
-        <strong>Estado: </strong>
+        </div>
+        {% comment %} <strong>Estado: </strong>
         {%if article.public %}
            <strong class="publicado">Publicado</strong>
         {%else%}
            <strong class="privado">Privado</strong>
-        {%endif%}
-        {{article.public}}
-        <p><span>{{article.create_date}}</span></p>
+        {%endif%} {% endcomment %}
+        {% comment %} {{article.public}}
+        <p><span>{{article.create_date}}</span></p> {% endcomment %}
         
-    </li>
-    <a href="{%url 'Borrar' article.id%}" class="boton_borrar">Borrar</a>
+    <a href="{%url 'Borrar' articulos.id%}" class="btn btn-delete">Borrar</a>
     <br>
-    <hr/>
+    {% comment %} <hr/> {% endcomment %}
+    </p>
+    <div class="clearfix">
+
     {% endfor %}
-</ul>
+    </article>
 {{ block.super }}
 
 {% endblock %}
+

@@ -2,6 +2,7 @@ from django.contrib import admin
 from django.urls import path
 from miapp import views
 import miapp.views
+from django.conf import settings
 
 
 urlpatterns = [
@@ -29,3 +30,9 @@ urlpatterns = [
     path('saveArticulo/', miapp.views.saveArticulo, name= "save"),
     path('create-full-article/', miapp.views.create_full_articulo, name="create_full")
 ]
+
+#configuracion para cargar imagenes
+if settings.DEBUG: #en el siguiente settings esta como true porque estamos local,
+    #false cuando este en produccion
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

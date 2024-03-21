@@ -295,14 +295,15 @@ hr {
 .article-item .image img{
     width: 200px;
 }
+
+.clearfix{
+    clear: both;
+    float: none;
+}
 .article-item .data{
     float: left;
     padding: 15px;
     padding-top: 0px;
-}
-.clearfix{
-    clear: both;
-    float: none;
 }
 .article-item h2{
     display: block;

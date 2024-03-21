@@ -115,7 +115,7 @@ def editar_articulo(request):
     return HttpResponse(f"El articulo {articulo.id} de nombre {articulo.title} ha sido actualizado y su estado es: {articulo.public}")
 
 def articulos(request):
-    articulos = Article.objects.all()
+    articulos = Article.objects.filter(public = True).order_by('id')
     return render(request, 'articulos.html',{
         'articulos':articulos
     })

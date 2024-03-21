@@ -30,9 +30,22 @@ urlpatterns = [
     path('saveArticulo/', miapp.views.saveArticulo, name= "save"),
     path('create-full-article/', miapp.views.create_full_articulo, name="create_full")
 ]
+#configurar el titulo del panel
+title="Master Blog de articulos"
+admin.site.site_header=title
+admin.site.site_title=title
+admin.site.index_title="Panel de Gestion"
 
 #configuracion para cargar imagenes
 if settings.DEBUG: #en el siguiente settings esta como true porque estamos local,
     #false cuando este en produccion
     from django.conf.urls.static import static
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+#configurar el titulo del panel
+admin.site.site_header="Master Blog de Articulos"
+#configuracion para cargar imagenes
+if settings.DEBUG:#en el settings esta como true porque estamos local,
+    #false cuando este en produccion
+    from django.conf.urls.static import static
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings)
